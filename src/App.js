@@ -1,5 +1,5 @@
-import Home from "./components/Home";
-import Editorpage from "./components/Editorpage";
+import Home from "./pages/Home";
+import Editorpage from "./pages/Editorpage";
 import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

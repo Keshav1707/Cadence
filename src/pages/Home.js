@@ -1,6 +1,11 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const Home = () => {
+  
+
+
+
   return (
     <div className="homePageWrapper">
       <div className="formWrapper">
