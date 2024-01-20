@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/components/Home.js
 import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 import { toast } from "react-hot-toast";
@@ -20,18 +19,18 @@ const Home = () => {
       toast.error("Room ID and username required");
       return;
     }
-    navigate("");
+    navigate(`/editor/${roomID}`, {
+      state: {
+        username,
+      },
+    });
   };
-=======
-import React from "react";
-import toast from "react-hot-toast";
-
-const Home = () => {
-  
-
-
-
->>>>>>> 680aeb6f388039ad16d30075aea8cda4aa879f78:src/pages/Home.js
+  const handleInputEnter = (e) => {
+    console.log("event", e.code);
+    if (e.code === "Enter") {
+      joinRoom();
+    }
+  };
   return (
     <div className="homePageWrapper">
       <div className="formWrapper">
@@ -48,7 +47,7 @@ const Home = () => {
             placeholder="ROOM ID"
             onChange={(e) => setRoomID(e.target.value)}
             value={roomID}
-            //onKeyUp={handleInputEnter}
+            onKeyUp={handleInputEnter}
           />
           <input
             type="text"
@@ -56,7 +55,7 @@ const Home = () => {
             placeholder="USERNAME"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
-            // onKeyUp={handleInputEnter}
+            onKeyUp={handleInputEnter}
           />
           <button className="btn joinBtn" onClick={joinRoom}>
             Join
