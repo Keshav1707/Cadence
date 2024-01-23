@@ -76,20 +76,33 @@ const Editorpage = () => {
    
 }, []);
 
-  async function copyRoomId(){
-    try{
-      await navigator.clipboard.writeText(roomId);
-      toast.success("RoomId copied to your Clipboard");
-
-    }catch(err){
-      console.log(err);
-      toast.error("Could not copy the RoomId");
-    }
+useEffect(() => {
+  // This useEffect watches for changes in roomId
+  if (roomId) {
+    // Now roomId is available, you can perform actions with it
+    console.log('Room ID:', roomId);
   }
+}, [roomId]);
+
+async function copyRoomId() {
+  try {
+      
+      await navigator.clipboard.writeText(roomId);
+      toast.success('Room ID has been copied to your clipboard');
+    
+  } catch (err) {
+      toast.error('Could not copy the Room ID');
+      console.error(err);
+  }
+}
 
   function leaveroom(){
     reactNavigator('/');
   }
+
+  if (!location.state) {
+    return <Navigate to="/" />;
+}
   
 
   return (
