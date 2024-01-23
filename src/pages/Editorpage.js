@@ -68,6 +68,11 @@ const Editorpage = () => {
         );
     };
     init();
+    return () => {
+      socketRef.current && socketRef.current.disconnect();
+      socketRef.current && socketRef.current.off(ACTIONS.JOINED);
+      socketRef.current && socketRef.current.off(ACTIONS.DISCONNECTED);
+    };
    
 }, []);
 
@@ -91,7 +96,11 @@ const Editorpage = () => {
         <button className="btn leaveBtn">Leave</button>
       </div>
       <div className="editorWrap">
-        <Editor />
+        <Editor  socketRef={socketRef} 
+                  roomId={roomId}
+                    onCodeChange={(code) => {
+                        codeRef.current = code;
+                    }} />
       </div>
     </div>
   );
