@@ -58,7 +58,7 @@ const Home = () => {
             onKeyUp={handleInputEnter}
           />
           <button className="btn joinBtn" onClick={joinRoom}>
-            Join
+            Join 
           </button>
           <span className="createInfo">
             If you don't have an invite then create &nbsp;
