@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 import { toast } from "react-hot-toast";
@@ -8,9 +9,28 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignUp = () => {
-    toast.success("Signup successful!");
-    navigate("/login");
+  const handleLogin =async() => {
+    try {
+      const response = await axios.post("http://localhost:5000/login",{
+        email,
+        password,
+      });
+
+      if (response.status===200) {
+        const user = await response.data;
+        // Handle successful login (e.g., store token in local storage)
+        console.log('Login successful:', user);
+        
+        toast.success("Login successful!");
+        navigate("/");
+      } else {
+        // Handle login failure (e.g., show error message)
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
   };
 
   return (
@@ -55,7 +75,7 @@ const Login = () => {
             <button
               type="button" // Use type="button" to prevent form submission
               className="btn loginBtn"
-              onClick={handleSignUp}
+              onClick={handleLogin}
             >
               Sign Up
             </button>
