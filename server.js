@@ -8,6 +8,35 @@ const ACTIONS = require('./src/Actions');
 const server = http.createServer(app);
 const io = new Server(server);
 
+const mongoose=require("mongoose");
+
+mongoose.connect('mongodb://127.0.0.1:27017/code-editor')
+.then(()=>console.log("MongoDb connected"))
+.catch((err)=> console.log("MongoDb error",err));
+
+const userSchema =new mongoose.Schema({
+    firstName:{
+        type : String,
+        required : true,
+
+
+
+    },
+    lastName:{
+        type : String,
+    },
+    email:{
+        type:String,
+        required:true,
+        unique : true,
+    },
+    
+})
+
+const User=mongoose.model("user",userSchema);
+
+
+
 const userSocketMap = {};
 function getAllConnectedClients(roomId) {
     // Map

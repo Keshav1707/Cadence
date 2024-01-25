@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Editorpage from "./pages/Editorpage";
+import Login from "./pages/Login";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/editor/:roomID" element={<Editorpage />}></Route>
+          <Route path="/login" element={<Login/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
